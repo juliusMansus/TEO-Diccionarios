@@ -11,7 +11,7 @@ def crear_dicc_titulos_anyos(bsos:List[Tuple[str,int]])->Dict[str, int]:
     :return: Un diccionario que tiene como clave los títulos y como valores los años
     :rtype: {str:int}
     '''
-    pass
+    return dict(bsos)
 
 def crear_dicc_titulos_anyos2(bsos:List[Tuple[str,int]])->Dict[str, int]:
     '''
@@ -22,8 +22,9 @@ def crear_dicc_titulos_anyos2(bsos:List[Tuple[str,int]])->Dict[str, int]:
     :return: Un diccionario que tiene como clave los títulos y como valores los años
     :rtype: {str:int}
     '''
-    pass
+    return {x:y for x,y in bsos}
 
+from collections import Counter, defaultdict
 def crear_dicc_anyos_conteo_titulos (bsos:List[Tuple[str,int]])->Dict[int, int]:
     '''
     Recibe:
@@ -34,7 +35,7 @@ def crear_dicc_anyos_conteo_titulos (bsos:List[Tuple[str,int]])->Dict[int, int]:
           de ese año
     :rtype: {int:int}
     '''
-    pass
+    return Counter(anyo for _, anyo in bsos)
 
 def crear_dicc_anyos_lista_titulos (bsos:List[Tuple[str,int]])->Dict[int, List[str]]:
     '''
@@ -46,7 +47,10 @@ def crear_dicc_anyos_lista_titulos (bsos:List[Tuple[str,int]])->Dict[int, List[s
           de ese año
     :rtype:{int:[str]}
     '''
-    pass
+    lista_titulos_por_anyo = defaultdict(list)
+    for titulo,anyo in bsos:
+        lista_titulos_por_anyo[anyo].append(titulo)
+    return lista_titulos_por_anyo
 
 def obtener_clave_mayor(dicc_bso:Dict[str,int])->str:
     '''
@@ -57,7 +61,7 @@ def obtener_clave_mayor(dicc_bso:Dict[str,int])->str:
     :return: La clave con valor mayor, segun el orden natural
     :rtype: str
     '''
-    pass
+    return max(dicc_bso.keys())
 
 def obtener_valor_mayor(dicc_bso:Dict[str,int])->int:
     '''
@@ -68,7 +72,7 @@ def obtener_valor_mayor(dicc_bso:Dict[str,int])->int:
     :return: El valor mayor, que en este caso es el año más reciente.
     :rtype: int
     '''
-    pass
+    return max(dicc_bso.values())
 
 def obtener_nombre_mas_largo(dicc_bso:Dict[str,int])->str:
     '''
@@ -79,4 +83,4 @@ def obtener_nombre_mas_largo(dicc_bso:Dict[str,int])->str:
     :return: El nombre de la canción con más caracteres
     :rtype: str
     '''
-    pass
+    return max(dicc_bso.keys(), key=lambda n: len(n))
